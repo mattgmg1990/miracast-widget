@@ -4,6 +4,8 @@
     android:versionCode="3"
     android:versionName="1.2" >
 
+    <uses-permission android:name="com.android.setting.permission.ALLSHARE_CAST_SERVICE"/>
+
     <uses-sdk
         android:minSdkVersion="18"
         android:targetSdkVersion="18" />
