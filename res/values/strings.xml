@@ -7,6 +7,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="logo_description">The Miracast Logo</string>
     <string name="cast_screen">Cast Screen</string>
+    <string name="error_toast">We\'re sorry, but the standard Miracast settings menu is not
+        supported on this device.</string>
 
 
 </resources>

@@ -15,18 +15,14 @@ public class MiracastWidgetProvider extends AppWidgetProvider{
 	
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        final int N = appWidgetIds.length;
+        final int length = appWidgetIds.length;
 
-        // Perform this loop procedure for each App Widget that belongs to this provider
-        for (int i=0; i<N; i++) {
+        for (int i = 0; i < length; i++) {
             int appWidgetId = appWidgetIds[i];
 
-            // Create an Intent to launch ExampleActivity
             Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            // Get the layout for the App Widget and attach an on-click listener
-            // to the button
             final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.miracast_widget);
             views.setOnClickPendingIntent(R.id.widget_layout_parent, pendingIntent);
             final DisplayManager displayManager = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);

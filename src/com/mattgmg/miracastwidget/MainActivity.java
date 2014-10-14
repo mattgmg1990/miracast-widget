@@ -2,6 +2,7 @@ package com.mattgmg.miracastwidget;
 
 import java.util.List;
 
+import android.content.ActivityNotFoundException;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +12,6 @@ import android.view.Menu;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
 	public static final String ACTION_WIFI_DISPLAY_SETTINGS = "android.settings.WIFI_DISPLAY_SETTINGS";
 	
 	@Override
@@ -20,12 +20,21 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
         Intent intent = new Intent(ACTION_WIFI_DISPLAY_SETTINGS);
         if(isCallable(intent)){
-        	startSettingsActivity(ACTION_WIFI_DISPLAY_SETTINGS);
+            try {
+                startSettingsActivity(intent);
+            } catch (ActivityNotFoundException exception) {
+                showErrorToast();
+            }
         } else {
-        	Toast.makeText(this, "We're sorry, but the standard Miracast settings menu if not supported on this device.", Toast.LENGTH_LONG).show();
+            showErrorToast();
         }
 		finish();
 	}
+
+    private void showErrorToast() {
+        String errorMessage = getResources().getString(R.string.error_toast);
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+    }
 	
 	private boolean isCallable(Intent intent) {
         List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, 
@@ -33,11 +42,6 @@ public class MainActivity extends Activity {
         return list.size() > 0;
     }	
 	
-    private void startSettingsActivity(String action) {
-        Intent intent = new Intent(action);
-        startSettingsActivity(intent);
-    }
-    
     private void startSettingsActivity(Intent intent) {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
