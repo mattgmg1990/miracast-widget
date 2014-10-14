@@ -10,6 +10,7 @@
         android:src="@drawable/ic_launcher"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_margin="5dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/logo_description" />
     
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cast_screen"
         style="@style/WidgetShadowText"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:textAlignment="textStart"
         android:textColor="#FFFFFF"/>
