@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Miracast Widget</string>
     <string name="launcher_icon_title">Miracast Shortcut</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="logo_description">The Miracast Logo</string>
+    <string name="logo_description">The Miracast widget application logo</string>
     <string name="cast_screen">Cast Screen</string>
     <string name="error_toast">We\'re sorry, but the standard Miracast settings menu is not
         supported on this device.</string>
-
-
 </resources>
