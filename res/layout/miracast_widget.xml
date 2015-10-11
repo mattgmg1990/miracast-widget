@@ -22,7 +22,7 @@
         style="@style/WidgetShadowText"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"/>
     
 </LinearLayout>

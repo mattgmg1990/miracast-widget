@@ -10,9 +10,8 @@ import android.hardware.display.DisplayManager.DisplayListener;
 import android.view.Display;
 import android.widget.RemoteViews;
 
-public class MiracastWidgetProvider extends AppWidgetProvider{
+public class MiracastWidgetProvider extends AppWidgetProvider {
 
-	
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         final int length = appWidgetIds.length;

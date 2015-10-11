@@ -13,15 +13,23 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public static final String ACTION_WIFI_DISPLAY_SETTINGS = "android.settings.WIFI_DISPLAY_SETTINGS";
-	
+    public static final String ACTION_CAST_SETTINGS = "android.settings.CAST_SETTINGS";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-        Intent intent = new Intent(ACTION_WIFI_DISPLAY_SETTINGS);
-        if(isCallable(intent)){
+        Intent wifiActionIntent = new Intent(ACTION_WIFI_DISPLAY_SETTINGS);
+        Intent castActionIntent = new Intent(ACTION_CAST_SETTINGS);
+        if(isCallable(wifiActionIntent)){
             try {
-                startSettingsActivity(intent);
+                startSettingsActivity(wifiActionIntent);
+            } catch (ActivityNotFoundException exception) {
+                showErrorToast();
+            }
+        } else if(isCallable(castActionIntent)) {
+            try {
+                startSettingsActivity(castActionIntent);
             } catch (ActivityNotFoundException exception) {
                 showErrorToast();
             }
@@ -47,11 +55,12 @@ public class MainActivity extends Activity {
         startActivity(intent);
     } 
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the
+        // action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
 	}
 
 }
