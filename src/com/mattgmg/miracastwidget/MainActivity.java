@@ -14,13 +14,16 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	public static final String ACTION_WIFI_DISPLAY_SETTINGS = "android.settings.WIFI_DISPLAY_SETTINGS";
     public static final String ACTION_CAST_SETTINGS = "android.settings.CAST_SETTINGS";
+    public static final String SETTINGS_APP_PACKAGE_NAME = "com.android.settings";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
         Intent wifiActionIntent = new Intent(ACTION_WIFI_DISPLAY_SETTINGS);
+        wifiActionIntent.setPackage(SETTINGS_APP_PACKAGE_NAME);
         Intent castActionIntent = new Intent(ACTION_CAST_SETTINGS);
+        castActionIntent.setPackage(SETTINGS_APP_PACKAGE_NAME);
         if(isCallable(wifiActionIntent)){
             try {
                 startSettingsActivity(wifiActionIntent);
