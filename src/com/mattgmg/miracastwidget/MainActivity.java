@@ -48,14 +48,20 @@ public class MainActivity extends Activity {
     }
 	
 	private boolean isCallable(Intent intent) {
-        List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, 
-            PackageManager.MATCH_DEFAULT_ONLY);
+        List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent,
+                                                                           PackageManager.MATCH_DEFAULT_ONLY);
         return list.size() > 0;
     }	
 	
     private void startSettingsActivity(Intent intent) {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        try {
+            startActivity(intent);
+        } catch (SecurityException e) {
+            // We don't have permission to launch this activity, alert the user and return.
+            showErrorToast();
+            return;
+        }
     } 
 
     @Override
