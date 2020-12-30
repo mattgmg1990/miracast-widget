@@ -1,17 +1,18 @@
 package com.mattgmg.miracastwidget;
 
-import android.app.Application;
+import androidx.multidex.MultiDexApplication;
+
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 
 /**
  * An application subclass to contain shared objects. Used right now for Google Analytics.
  */
-public class MiracastApplication extends Application {
+public class MiracastApplication extends MultiDexApplication {
     private Tracker mTracker;
 
     /**
-     * Gets the default {@link Tracker} for this {@link Application}.
+     * Gets the default {@link Tracker} for this {@link MultiDexApplication}.
      * @return tracker
      */
     synchronized public Tracker getDefaultTracker() {
