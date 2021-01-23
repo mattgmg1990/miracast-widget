@@ -18,6 +18,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "default"
+
+    productFlavors {
+        floss {}
+        play {}
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -37,9 +44,10 @@ android {
 
 dependencies {
 
+    playImplementation 'com.google.android.gms:play-services-analytics:17.0.0'
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'com.google.android.gms:play-services-analytics:17.0.0'
 
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
