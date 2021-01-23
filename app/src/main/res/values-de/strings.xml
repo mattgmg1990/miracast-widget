@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Miracast Widget</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="cast_screen">Bildschirm teilen</string>
+    <string name="error_toast">Miracast wird auf diesem Gerät leider nicht unterstützt.</string>
+    <string name="launcher_icon_title">Miracast-Verknüpfung</string>
+    <string name="logo_description">Logo des Miracast-Widgets</string>
+</resources>
