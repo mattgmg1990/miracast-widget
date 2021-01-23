@@ -14,8 +14,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/launcher_icon_title"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name="com.mattgmg.miracastwidget.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/launcher_icon_title"
             android:theme="@android:style/Theme.NoDisplay"
             android:noHistory="true"
