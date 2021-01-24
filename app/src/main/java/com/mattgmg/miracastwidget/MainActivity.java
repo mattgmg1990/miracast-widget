@@ -39,10 +39,7 @@ public class MainActivity extends Activity {
                 startSettingsActivity(systemWifiIntent);
                 finish();
                 return;
-            } catch (ActivityNotFoundException exception) {
-                // We'll show an error below if the next Intent can't be launched
-                exception.printStackTrace();
-            }
+            } catch (ActivityNotFoundException ignored) {}
         }
 
         systemResolveInfo = getSystemResolveInfo(castActionIntent);
@@ -54,10 +51,7 @@ public class MainActivity extends Activity {
                 startSettingsActivity(systemCastIntent);
                 finish();
                 return;
-            } catch (ActivityNotFoundException exception) {
-                // Show an error in the block below.
-                exception.printStackTrace();
-            }
+            } catch (ActivityNotFoundException ignored) {}
         }
 
         // Show an error and fail
@@ -68,8 +62,7 @@ public class MainActivity extends Activity {
     private void updateWidget() {
         Intent intent = new Intent(this, MiracastWidgetProvider.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        int[] ids
-                = AppWidgetManager.getInstance(getApplication())
+        int[] ids = AppWidgetManager.getInstance(getApplication())
                         .getAppWidgetIds(new ComponentName(getApplication(), MiracastWidgetProvider.class));
         if (ids != null) {
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
@@ -92,9 +85,7 @@ public class MainActivity extends Activity {
                 if ((activityInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
                     return info;
                 }
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
+            } catch (PackageManager.NameNotFoundException ignored) {}
         }
         return null;
     }
@@ -105,7 +96,6 @@ public class MainActivity extends Activity {
             startActivity(intent);
         } catch (SecurityException e) {
             // We don't have permission to launch this activity, alert the user and return.
-            e.printStackTrace();
             showErrorToast();
         }
     } 
