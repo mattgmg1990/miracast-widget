@@ -7,11 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.DisplayManager.DisplayListener;
-import android.util.Log;
 import android.view.Display;
 import android.widget.RemoteViews;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 
 public class MiracastWidgetProvider extends AppWidgetProvider {
 
@@ -41,12 +38,6 @@ public class MiracastWidgetProvider extends AppWidgetProvider {
                     views.setTextColor(R.id.widget_text, context.getResources().getColor(android.R.color.holo_blue_bright));
                     currentDisplay = display.getDisplayId();
                     displaySet = true;
-
-                    // Track this
-                    MiracastApplication application
-                            = (MiracastApplication) context.getApplicationContext();
-                    Tracker tracker = application.getDefaultTracker();
-                    sendEventDisplayFound(tracker);
             	}
             }
             
@@ -62,13 +53,6 @@ public class MiracastWidgetProvider extends AppWidgetProvider {
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
-
-    private void sendEventDisplayFound(Tracker tracker) {
-        tracker.send(new HitBuilders.EventBuilder()
-                       .setCategory("widget")
-                       .setAction("display_added")
-                       .build());
-    }
 	
 	private class MiracastDisplayListener implements DisplayListener {
 		int mCurrentDisplay = -1;
@@ -77,7 +61,6 @@ public class MiracastWidgetProvider extends AppWidgetProvider {
 		int mAppWidgetId;
 		AppWidgetManager mAppWidgetManager;
 		Context mContext;
-        Tracker mTracker;
 		
 		public MiracastDisplayListener(int currentDisplay, RemoteViews widgetRemoteViews, DisplayManager displayManager, AppWidgetManager appWidgetManager, int appWidgetId, Context context){
 			mCurrentDisplay = currentDisplay;
@@ -86,9 +69,6 @@ public class MiracastWidgetProvider extends AppWidgetProvider {
 			mAppWidgetManager = appWidgetManager;
 			mAppWidgetId = appWidgetId;
 			mContext = context;
-            MiracastApplication application
-                    = (MiracastApplication) mContext.getApplicationContext();
-            mTracker = application.getDefaultTracker();
 		}
 				
         @Override
@@ -114,7 +94,6 @@ public class MiracastWidgetProvider extends AppWidgetProvider {
             Display display = mDisplayManager.getDisplay(displayId);
             mViews.setTextViewText(R.id.widget_text, display.getName());
             mViews.setTextColor(R.id.widget_text, mContext.getResources().getColor(android.R.color.holo_blue_bright));
-            sendEventDisplayFound(mTracker);
 
             // Tell the AppWidgetManager to perform an update on the current app widget
             mAppWidgetManager.updateAppWidget(mAppWidgetId, mViews);
